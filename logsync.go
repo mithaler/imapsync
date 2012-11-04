@@ -39,6 +39,7 @@ func writeLog(addr, body string, date time.Time) error {
 
 	path := fmt.Sprintf("%v/%v.html", addr, date.Format("2006-01-02.150405-0700MST"))
 	file, err := os.Create(path)
+	defer file.Close()
 
 	file.WriteString(body)
 	file.Sync()
